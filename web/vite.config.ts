@@ -10,7 +10,6 @@ export default defineConfig({
         target: 'https://localhost:7016',
         changeOrigin: true,
         secure: false, // accept the local dev cert on the Node->.NET hop
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

@@ -16,7 +16,7 @@ function App() {
 
     async function load() {
       try {
-        const res = await fetch('/api/weatherforecast')
+        const res = await fetch('/api/forecasts')
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         const data: Forecast[] = await res.json()
         if (!ignore) setForecasts(data)
