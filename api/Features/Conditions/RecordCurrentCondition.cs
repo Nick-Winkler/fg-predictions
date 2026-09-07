@@ -1,6 +1,7 @@
 using Api.Domain;
 using Api.Endpoints;
 using Api.Infrastructure;
+using FluentValidation;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Api.Features.Conditions;
@@ -11,11 +12,20 @@ public static class RecordCurrentCondition
 
     public record Response(int Id, DateTimeOffset RecordedAt, int TemperatureC, string? Summary);
 
+    public sealed class Validator : AbstractValidator<Request>
+    {
+        public Validator()
+        {
+            RuleFor(x => x.TemperatureC).InclusiveBetween(-100, 100);
+            RuleFor(x => x.Summary).MaximumLength(100);
+        }
+    }
+
     public sealed class Endpoint : IEndpoint
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapConditionsApi().MapPost("", Handler);
+            app.MapConditionsApi().MapPost("", Handler).WithValidation<Request>();
         }
     }
 

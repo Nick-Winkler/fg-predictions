@@ -28,9 +28,5 @@ cd web && pnpm dev          # open this URL, it proxies /api/* to the API
 
 ## Using your own database credentials
 
-Edit `.env`, recreate the container with `docker compose down -v && docker compose up -d`, then:
-
-```bash
-dotnet user-secrets set "ConnectionStrings:Database" \
-  "Host=localhost;Port=5432;Database=<db>;Username=<user>;Password=<password>" --project api
-```
+Edit `.env`, recreate the container with `docker compose down -v && docker compose up -d`, then
+match `ConnectionStrings:Database` in `api/appsettings.Development.json` to it.
