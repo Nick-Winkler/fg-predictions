@@ -37,3 +37,6 @@ app.UseHttpsRedirection();
 app.MapEndpoints();
 
 app.Run();
+
+// Needed for the integration test project to use WebApplicationFactory<Program>
+public partial class Program;
