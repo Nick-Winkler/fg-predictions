@@ -1,0 +1,2 @@
+allowBuilds:
+  msw: false # Unecessary since it's only being used server-side
