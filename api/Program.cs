@@ -4,13 +4,17 @@ using FluentValidation;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
+
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddEndpoints();
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict);
 builder.Services.AddOpenApi(options =>
 {
     // Handle per-slice nested DTOs so GetForecasts.Response -> "GetForecastsResponse"

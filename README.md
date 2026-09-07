@@ -26,6 +26,14 @@ dotnet run --project api    # API + Scalar at https://localhost:7016/scalar
 cd web && pnpm dev          # open this URL, it proxies /api/* to the API
 ```
 
+## Changing the API contract
+
+`dotnet build api` rewrites `api/openapi.json`. Regenerate the frontend types from it:
+
+```bash
+cd web && pnpm gen:api      # rewrites src/lib/api/schema.d.ts
+```
+
 ## Using your own database credentials
 
 Edit `.env`, recreate the container with `docker compose down -v && docker compose up -d`, then
