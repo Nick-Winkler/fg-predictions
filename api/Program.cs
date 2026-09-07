@@ -1,9 +1,13 @@
 using Api.Endpoints;
+using Api.Infrastructure;
 using Microsoft.AspNetCore.OpenApi;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddEndpoints();
 builder.Services.AddOpenApi(options =>
 {
