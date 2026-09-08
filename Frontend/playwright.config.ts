@@ -13,7 +13,7 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: [
     {
-      command: 'dotnet run --project ../api --no-launch-profile',
+      command: 'dotnet run --project ../Backend/Api --no-launch-profile',
       url: 'https://localhost:7016/api/forecasts',
       ignoreHTTPSErrors: true,
       reuseExistingServer: !process.env.CI,
