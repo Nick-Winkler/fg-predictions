@@ -1,10 +1,10 @@
-# App
+# fg-predictions
 
 .NET 10 minimal API + React 19 / TypeScript frontend.
 
 ```
 Backend/                 self-contained .NET solution root
-  App.slnx
+  FgPredictions.slnx
   Directory.Packages.props
   Api/                   minimal API, vertical slices under Features/
   Api.UnitTests/
@@ -50,9 +50,10 @@ cd Frontend && pnpm gen:api         # rewrites src/lib/api/schema.d.ts
 Edit `.env`, recreate the container with `docker compose down -v && docker compose up -d`, then
 match `ConnectionStrings:Database` in `Backend/Api/appsettings.Development.json` to it.
 
-## Starting a new project from this template
+## Notes
 
-Rename `Backend/App.slnx`, the `<title>` in `Frontend/index.html`, and the `app` credentials in
-`.env.example` / `Backend/Api/appsettings.Development.json`. The `Conditions` and `Forecasts`
-slices are sample vertical slices — delete them along with their tests and migrations once you
-have real features.
+The `Conditions` and `Forecasts` slices are scaffolding examples — delete them along with their
+tests and migrations once real features land.
+
+`docker-compose.yml` pins the Compose project name to `fgp`, so container, volume, and network
+names are stable regardless of what the checkout directory is called.
